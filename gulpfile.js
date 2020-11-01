@@ -89,7 +89,6 @@ function startwatch() {
     watch('app/**/*.html').on('change', browserSync.reload);
     watch('app/img/src/**/*', images); //наблюдаем чисто за источниками
 }
-
 exports.browsersync = browsersync;
 exports.scripts     = scripts;
 exports.styles      = styles;
