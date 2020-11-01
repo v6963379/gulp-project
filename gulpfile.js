@@ -67,7 +67,7 @@ function styles() {
     return del('app/img/dest/**.*', { force: true})
  }
  function cleandist() {
-    return del('dist', { force: true})
+    return del('dist/**.*', { force: true})
  }
  
 
