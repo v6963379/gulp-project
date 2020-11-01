@@ -78,7 +78,7 @@ function styles() {
          'app/js/**/*.min.js',
          'app/img/dest/**/*',
          'app/**/*.html',
-     ])
+     ], { base: 'app'})
      .pipe(dest('dist')); //копируем все в папку dist
  }
 
