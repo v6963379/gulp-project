@@ -64,8 +64,12 @@ function styles() {
     .pipe(dest('app/img/dest/'))
  }
  function cleanimg() {
-    return del('app/img/dest/**.*')
+    return del('app/img/dest/**.*', { force: true})
  }
+ function cleandist() {
+    return del('dist', { force: true})
+ }
+ 
 
 // копируем все, кроме исходников для дальнейшей выгрузки готового проекта
  function buildcopy() {
@@ -91,7 +95,7 @@ exports.scripts     = scripts;
 exports.styles      = styles;
 exports.images      = images;
 exports.cleanimg    = cleanimg;
-exports.build       = series(styles, scripts, images, buildcopy); //последовательно
+exports.build       = series(cleandist, styles, scripts, images, buildcopy); //последовательно
 exports.default     = parallel (scripts, styles, browsersync, startwatch);
 
  
