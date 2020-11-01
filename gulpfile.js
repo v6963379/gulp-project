@@ -36,7 +36,7 @@ function browsersync() {
 // функция обрабатывающая наши скрипты
 function scripts() {
     return src([
-        'node_modules/jquery/dest/jquery.min.js',
+        'node_modules/jquery/dist/jquery.min.js',
         'app/js/app.js', //укажем путь к исходнику 
     ])
     .pipe(concat('app.min.js')) //объединим
@@ -68,15 +68,15 @@ function styles() {
  }
 
 // копируем все, кроме исходников для дальнейшей выгрузки готового проекта
-//  function buildcopy() {
-//      return src([
-//          'app/css/**/*.min.css',
-//          'app/js/**/*.min.js',
-//          'app/img/dest/**/*',
-//          'app/**/*.html',
-//      ])
-//      .pipe(dest('dist')); //копируем все в папку dist
-//  }
+ function buildcopy() {
+     return src([
+         'app/css/**/*.min.css',
+         'app/js/**/*.min.js',
+         'app/img/dest/**/*',
+         'app/**/*.html',
+     ])
+     .pipe(dest('dist')); //копируем все в папку dist
+ }
 
 // функция следящая за изменениями и выводом автоматически на страницу
 function startwatch() {
@@ -91,7 +91,7 @@ exports.scripts     = scripts;
 exports.styles      = styles;
 exports.images      = images;
 exports.cleanimg    = cleanimg;
-// exports.build       = series(styles, scripts, images, buildcopy); //последовательно
-exports.default     = parallel(scripts, styles, browsersync, startwatch);
+exports.build       = series(styles, scripts, images, buildcopy); //последовательно
+exports.default     = parallel (scripts, styles, browsersync, startwatch);
 
  
